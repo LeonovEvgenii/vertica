@@ -1,0 +1,55 @@
+﻿DROP TABLE public."поставка товара";
+DROP TABLE public."поставки";
+DROP TABLE public."товар";
+DROP TABLE public."поставщик";
+drop table "склад";
+
+create table "склад"
+(
+	id serial primary key,
+	"название" varchar not null
+);
+
+CREATE TABLE public."поставщик"
+(
+  id serial primary key,
+  "название" character varying NOT NULL
+);
+
+CREATE TABLE public."товар"
+(
+  id serial primary key,
+  "название" character varying NOT NULL,
+  "цена" numeric(6,2) NOT NULL  
+);
+
+CREATE TABLE public."поставка"
+(
+  id serial primary key, 
+  "склад" int references "склад" (id),
+  "поставщик" int references "поставщик" (id),
+  "дата" date NOT NULL,
+  "номер" integer NOT NULL
+);
+
+CREATE TABLE public."поставка товара"
+(
+  id serial,
+  "поставка" int references "поставка" (id),
+  "товар" int references "товар" (id),
+  "количество" integer NOT NULL
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
